@@ -3,6 +3,8 @@
 ## 結構
 
   ![示意圖](./images/image.png)
+<img width="331" height="112" alt="image" src="https://github.com/user-attachments/assets/d9726407-47d8-435d-9c55-b273e29a730f" />
+
 
 - **step_a_preprocess1.py**: 圖像初步預處理。
   
