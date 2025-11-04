@@ -26,7 +26,7 @@
   
   <img width="407" height="132" alt="image" src="https://github.com/user-attachments/assets/b1684ae1-68a8-4076-a2c5-e97d12467e09" />
 
-- **utils.py**: 輔助功能和工具。
+- **utils.py**: 函式庫(utilitiy functions)。
 
 
 ## 使用指南
