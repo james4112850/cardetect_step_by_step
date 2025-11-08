@@ -12,14 +12,16 @@ try:
         ensure_dir,
     )
 except ModuleNotFoundError:
-    from utils import (
-        adjust_hsv_lightness_by_percentile,
-        basename_no_ext,
-        extract_numeric_token,
-        list_images,
-        read_image_bgr,
-        write_image,
-        ensure_dir,
+    import sys
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
+    from stepbystep.utils import (
+    adjust_hsv_lightness_by_percentile,
+    basename_no_ext,
+    extract_numeric_token,
+    list_images,
+    read_image_bgr,
+    write_image,
+    ensure_dir,
     )
 
 
@@ -28,7 +30,7 @@ def main(input_dir: Optional[str] = None, output_dir: Optional[str] = None) -> N
     if input_dir is None:
         input_dir = os.path.join(project_root, "raw_images")
     if output_dir is None:
-        output_dir = os.path.join(project_root, "result", "a_preprocess1")
+        output_dir = os.path.join(project_root, "a_preprocess1")
     # 嚴格檢查輸入資料夾來源
     expected_input = os.path.join(project_root, "raw_images")
     if os.path.normcase(os.path.abspath(input_dir)) != os.path.normcase(os.path.abspath(expected_input)):

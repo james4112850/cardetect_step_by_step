@@ -16,7 +16,9 @@ try:
         to_bgr,
     )
 except ModuleNotFoundError:
-    from utils import (
+    import sys
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
+    from stepbystep.utils import (
         basename_no_ext,
         extract_numeric_token,
         list_images,
@@ -106,15 +108,14 @@ def recognize_plate_text(model: YOLO, plate_bgr: np.ndarray) -> str:
 def main(input_dir: Optional[str] = None, output_dir: Optional[str] = None, weights_path: Optional[str] = None) -> None:
     project_root = os.path.abspath(os.path.dirname(__file__))
     if input_dir is None:
-        # 從 d_crop_plate 讀取
-        input_dir = os.path.join(project_root, "result", "d_crop_plate")
+        input_dir = os.path.join(project_root, "d_crop_plate")
     if output_dir is None:
-        output_dir = os.path.join(project_root, "result", "e_characters")
+        output_dir = os.path.join(project_root, "e_characters")
     if weights_path is None:
         weights_path = os.path.join(os.path.dirname(__file__), "characters.pt")
 
     # 嚴格檢查輸入資料夾來源
-    expected_input = os.path.join(project_root, "result", "d_crop_plate")
+    expected_input = os.path.join(project_root, "d_crop_plate")
     if os.path.normcase(os.path.abspath(input_dir)) != os.path.normcase(os.path.abspath(expected_input)):
         raise ValueError(f"input_dir 必須為 {expected_input}，目前為 {input_dir}")
 
@@ -122,8 +123,7 @@ def main(input_dir: Optional[str] = None, output_dir: Optional[str] = None, weig
     results_csv = os.path.join(output_dir, "results.csv")
 
     char_model = YOLO(weights_path)
-    # 僅處理前一步輸出的車牌裁剪結果
-    image_paths = [p for p in list_images(input_dir) if "_d(crop_plate)" in basename_no_ext(p)]
+    image_paths = list_images(input_dir)
     if not image_paths:
         print(f"No images found in {input_dir}")
         return
