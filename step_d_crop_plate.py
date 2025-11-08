@@ -4,26 +4,14 @@ from typing import Optional
 import cv2
 from ultralytics import YOLO
 
-try:
-    from stepbystep.utils import (
-        basename_no_ext,
-        extract_numeric_token,
-        list_images,
-        read_image_bgr,
-        write_image,
-        ensure_dir,
-    )
-except ModuleNotFoundError:
-    import sys
-    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
-    from stepbystep.utils import (
-        basename_no_ext,
-        extract_numeric_token,
-        list_images,
-        read_image_bgr,
-        write_image,
-        ensure_dir,
-    )
+from utils import (
+    basename_no_ext,
+    extract_numeric_token,
+    list_images,
+    read_image_bgr,
+    write_image,
+    ensure_dir,
+)
 
 
 def main(input_dir: Optional[str] = None, output_dir: Optional[str] = None, weights_path: Optional[str] = None) -> None:

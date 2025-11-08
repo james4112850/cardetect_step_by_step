@@ -5,28 +5,15 @@ from typing import List, Optional, Tuple
 import numpy as np
 from ultralytics import YOLO
 
-try:
-    from stepbystep.utils import (
-        basename_no_ext,
-        extract_numeric_token,
-        list_images,
-        read_image_bgr,
-        write_image,
-        ensure_dir,
-        to_bgr,
-    )
-except ModuleNotFoundError:
-    import sys
-    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir)))
-    from stepbystep.utils import (
-        basename_no_ext,
-        extract_numeric_token,
-        list_images,
-        read_image_bgr,
-        write_image,
-        ensure_dir,
-        to_bgr,
-    )
+from utils import (
+    basename_no_ext,
+    extract_numeric_token,
+    list_images,
+    read_image_bgr,
+    write_image,
+    ensure_dir,
+    to_bgr,
+)
 
 
 def dedupe_and_sort_chars(char_entries: List[List[float]]) -> List[List[float]]:
